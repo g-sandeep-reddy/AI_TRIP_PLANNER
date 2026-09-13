@@ -11,3 +11,4 @@ sqlalchemy
 psycopg[binary]
 python-jose[cryptography]
 passlib[bcrypt]
+streamlit
