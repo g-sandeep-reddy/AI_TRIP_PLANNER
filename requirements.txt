@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+google-genai
+langgraph
+langchain
+pydantic
+python-dotenv
+httpx
+chromadb
+sqlalchemy
+psycopg[binary]
+python-jose[cryptography]
+passlib[bcrypt]
