@@ -13,7 +13,7 @@ from backend.models import (
     LoginRequest,
     ChatMessageRequest
 )
-from database.connection import SessionLocal
+from database.connection import SessionLocal, engine, Base
 from database.models import User, Trip, ChatSession, ChatMessage
 from fastapi import FastAPI, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -23,6 +23,7 @@ from backend.auth import hash_password, verify_password, create_access_token, ve
 load_dotenv()
 
 app = FastAPI()
+Base.metadata.create_all(bind=engine)
 security = HTTPBearer()
 
 client = genai.Client(
