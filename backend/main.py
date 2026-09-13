@@ -1,7 +1,6 @@
 import os
 import json
 from dotenv import load_dotenv
-from fastapi import FastAPI
 from google import genai
 from agents.graph import graph
 
@@ -35,18 +34,6 @@ client = genai.Client(
 def home():
     return {"message": "AI Trip Planner API is running"}
 
-
-@app.get("/test-gemini")
-def test_gemini():
-
-    response = client.models.generate_content(
-        model="gemini-3-flash-preview",
-        contents="Explain in one sentence what an AI travel planner does."
-    )
-
-    return {
-        "response": response.text
-    }
 
 @app.post("/plan-trip")
 def plan_trip(
