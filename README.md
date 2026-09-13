@@ -1,50 +1,130 @@
-# AI Trip Planner
+# 🤖 AI Trip Planner
 
-An AI-powered travel planning application that generates personalized,
-weather-aware travel itineraries using Gemini, LangGraph, RAG, external
-tools, and PostgreSQL.
+### Agentic AI Travel Planning Platform
 
-## Features
+An end-to-end **Agentic AI travel planning application** that combines **Gemini, LangGraph, RAG, real-time weather data, FastAPI, PostgreSQL, JWT authentication, and Streamlit** to generate personalized and practical travel itineraries.
 
-- Personalized trip planning
-- Weather-aware recommendations
-- Multi-agent architecture
-- RAG-based destination research
-- External tool integration
-- Persistent trip and user data
-- JWT authentication
-- Trip evaluation
+🌐 **Live Application:** https://ai-trip-planner-frontend-c2py.onrender.com
 
-## Tech Stack
+📦 **GitHub Repository:** https://github.com/g-sandeep-reddy/AI_TRIP_PLANNER
 
-- Python
-- FastAPI
-- Gemini API
-- LangChain
-- LangGraph
-- PostgreSQL
-- RAG
-- HTML/CSS/JavaScript
-- Render
+---
 
-## Architecture
+## 🚀 Overview
 
-The application uses FastAPI as the backend API layer and LangGraph
-to orchestrate multiple AI agents and external tools.
+Traditional travel applications often provide static recommendations.
 
-## Project Structure
+**AI Trip Planner** uses an Agentic AI workflow to dynamically combine:
+
+- User preferences
+- Destination-specific knowledge
+- Retrieved information through RAG
+- Real-time weather conditions
+- Budget constraints
+- LLM-based reasoning
+
+The system takes a user's:
+
+- 📍 Destination
+- 📅 Number of days
+- 💰 Budget
+- ❤️ Interests
+
+and generates a structured, personalized **day-by-day travel itinerary**.
+
+The application also supports user authentication, persistent trip history, and conversational travel assistance.
+
+---
+
+# 🏗️ System Architecture
 
 ```text
-AI_TRIP_PLANNER/
-├── backend/
-├── frontend/
-├── agents/
-├── tools/
-├── rag/
-├── database/
-├── evaluation/
-├── knowledge/
-├── .env
-├── .gitignore
-├── requirements.txt
-└── README.md
+                         ┌──────────────────────┐
+                         │        USER          │
+                         │                      │
+                         │ Destination          │
+                         │ Days                 │
+                         │ Budget               │
+                         │ Interests            │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │ Streamlit Frontend   │
+                         │                      │
+                         │ Trip Planner         │
+                         │ Chat                 │
+                         │ My Trips             │
+                         │ Weather              │
+                         └──────────┬───────────┘
+                                    │
+                              REST API
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │   FastAPI Backend    │
+                         │                      │
+                         │ JWT Authentication   │
+                         │ API Endpoints        │
+                         │ Request Validation   │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                 ┌─────────────────────────────────────┐
+                 │          LangGraph Workflow         │
+                 │                                     │
+                 │  State-driven Agentic AI Pipeline   │
+                 └──────────────────┬──────────────────┘
+                                    │
+                                    ▼
+                    ┌─────────────────────────────┐
+                    │       Research Agent        │
+                    │                             │
+                    │          Gemini             │
+                    └──────────────┬──────────────┘
+                                   │
+                              RAG Query
+                                   │
+                                   ▼
+                    ┌─────────────────────────────┐
+                    │     Gemini Embeddings       │
+                    └──────────────┬──────────────┘
+                                   │
+                                   ▼
+                    ┌─────────────────────────────┐
+                    │          ChromaDB            │
+                    │                             │
+                    │   Travel Knowledge Base     │
+                    └──────────────┬──────────────┘
+                                   │
+                         Relevant Knowledge
+                                   │
+                                   ▼
+                    ┌─────────────────────────────┐
+                    │        Weather Tool         │
+                    │                             │
+                    │       Open-Meteo API        │
+                    └──────────────┬──────────────┘
+                                   │
+                            Weather Data
+                                   │
+                                   ▼
+                    ┌─────────────────────────────┐
+                    │      Itinerary Agent        │
+                    │                             │
+                    │          Gemini             │
+                    └──────────────┬──────────────┘
+                                   │
+                                   ▼
+                    ┌─────────────────────────────┐
+                    │       Structured TripPlan   │
+                    │                             │
+                    │ Days • Activities • Budget │
+                    └──────────────┬──────────────┘
+                                   │
+                                   ▼
+                    ┌─────────────────────────────┐
+                    │         PostgreSQL          │
+                    │                             │
+                    │ Users • Trips • Chat History│
+                    └─────────────────────────────┘
